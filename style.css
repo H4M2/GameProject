@@ -16,3 +16,25 @@
     display: none;
      
 }
+
+.settings {
+    border: 5px solid black;
+    position:absolute;
+    top: 40%;
+    left: 10%;
+    transform:translate(-50%, -50%);
+}
+
+.settingTitle {
+    padding: 0.5em;
+}
+
+.inputs {
+    list-style: none;
+    padding-left: .5em;
+}
+
+.inputs li {
+    padding-bottom: .6em;
+}
+

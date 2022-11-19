@@ -7,11 +7,29 @@
     <title>Javascript Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <canvas id="canvas1"></canvas>
-
-    <img id="player" src="assets/player.png">
+<div>
     
-    <script type="module" src="main.js"></script>
+    <div class = "settings">
+        <h1 class = "settingTitle">Settings</h1> 
+        <ul class="inputs"> 
+            <li> <input type="checkbox" name="Dark" id="Dark"> <label for="Dark"> Dark Mode </label> </li>
+            <li> <input type="checkbox" name="HJ" id="HJ"> <label for="HJ"> High Jump </label> </li>
+            <li> <input type="checkbox" name="SM" id="SM"> <label for="SM"> Slow Mode </label> </li>
+            <li> <input type="checkbox" name="FM" id="FM"> <label for="FM"> Fly Mode </label> </li>
+            <li> <input type="checkbox" name="Dark" id="Dark"> <label for="Dark"> </label> </li>
+        </ul>
+    </div>
+    
+    <div>
+        <canvas id="canvas1"></canvas>
+        
+        <img id="player" src="assets/player.png">
+        
+        <script type="module" src="main.js"></script>
+        
+    </div>
+    
+</div>
+<body>
 </body>
 </html>

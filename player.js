@@ -4,14 +4,17 @@ export class Player {
         this.width = 100;
         this.height = 91.3;
         this.x=0;
-        this.y = this.game.height - this.height;
+        this.y = this.game.height - this.height - this.game.groundMargin;
         this.vy = 0; //velocity y
         this.weight = 1;
         this.image = document.getElementById('player');
         this.speed = 0;
         this.maxSpeed= 10;
+        this.fps = 20; 
+        this.frameInterval = 1000/this.fps;
+        this.frameTimer = 0;
     }
-    update(input){
+    update(input, deltaTime){
         // horizontal movement
         this.x += this.speed;
         if (input.includes('ArrowRight')) this.speed = this.maxSpeed; 
@@ -24,7 +27,9 @@ export class Player {
         this.y += this.vy;
         if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
-        
+        if (this.frameTimer > this.frameInterval){
+            this.frametimer = 0; 
+        }
         
     }
     draw(context){
@@ -32,6 +37,7 @@ export class Player {
     } 
 
     onGround(){
-        return this.y >= this.game.height - this.height;
+        return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
+    
 }  

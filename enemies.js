@@ -23,16 +23,17 @@ export class FlyingEnemy extends Enemy{
         this.height = 100;
         this.x = this.game.width + Math.random() * this.game.height * 0.5;;
         this.y = Math.random() * this.game.height * 0.5;
-        this.speedX = Math.random() + 1;
+        this.speedX = Math.random() + 0.5;
         this.speedY = 0;
         this.image = document.getElementById('enemy_fly');
-        this.angle = 0
-        this.va = Math.random() * 0.1 + 0.1;
+        this.angle = 0;
+        this.va = Math.random() * 0.05 + 0.05;
     }
     update(deltaTime){
         super.update(deltaTime);
         this.angle += this.va;
         this.y += Math.sin(this.angle);
+        this.x += Math.cos(this.angle);
     }
 } 
 

@@ -22,6 +22,9 @@ window.addEventListener('load',function(){
             this.player = new Player(this); 
             this.input = new InputHandler(this);
             this.UI = new UI(this);
+            this.fps = 60;
+            this.timer = 10;
+            this.interval = 1000/this.fps;
             this.enemies = [];
             this.particles = [];
             this.maxParticles = 200;
@@ -30,10 +33,15 @@ window.addEventListener('load',function(){
             this.debug = false;
             this.score = 0;
             this.fontColor = 'black'
+            this.time = 0;
+            this.maxTime = 30000;
+            this.gameOver = false;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
         }
         update(deltaTime){
+            this.time += deltaTime;
+            if (this.time > this.maxTime) this.gameOver = true;
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
             //handleEnemies
@@ -53,19 +61,25 @@ window.addEventListener('load',function(){
                 if (particle.markedForDeletion) this.particles.splice(index, 1);
             })
             if (this.particles.length > this.maxParticles) {
-                this.particles = this.particles.slice(0, this.maxParticles);
+                this.particles.length = this.maxParticles;
             }
         }
-        draw(context){
-            this.background.draw(context);
-            this.player.draw(context);
-            this.enemies.forEach(enemy => {
-                enemy.draw(context);
-            });
-            this.particles.forEach(particle => {
-                particle.draw(context);
-            });
-            this.UI.draw(context);
+        draw(context, deltaTime){
+            if (this.timer > this.interval){
+                context.clearRect(0, 0, this.width, this.height);
+                this.background.draw(context);
+                this.player.draw(context);
+                this.enemies.forEach(enemy => {
+                    enemy.draw(context);
+                });
+                this.particles.forEach(particle => {
+                    particle.draw(context);
+                });
+                this.UI.draw(context);
+                this.timer = 0
+            }
+            this.timer += deltaTime;
+            
         }
         addEnemy(){
             if(this.speed>0 && Math.random() < 0.5) this.enemies.push(new GroundEnemy(this));
@@ -79,10 +93,9 @@ window.addEventListener('load',function(){
     function animate(timeStamp){
         const deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.update(deltaTime);
-        game.draw(ctx);
-        requestAnimationFrame(animate);
+        game.draw(ctx, deltaTime);
+        if (!game.gameOver) requestAnimationFrame(animate);
     }
     animate(0);
 });

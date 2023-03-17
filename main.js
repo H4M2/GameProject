@@ -32,7 +32,7 @@ window.addEventListener('load',function(){
             this.particles = [];
             this.maxParticles = 200;
             this.enemyTimer = 0;
-            this.enemyInterval = 1000; //enemy spawn timer
+            this.enemyInterval = 700; //enemy spawn timer
             this.debug = false;
             this.score = 0;
             this.fontColor = 'black'
@@ -68,10 +68,12 @@ window.addEventListener('load',function(){
             }
             if (fm.checked) {
                 this.maxSpeed = 20;
+                this.enemyInterval = 100;
             } else if (sm.checked) {
                 this.maxSpeed = 1;
             } else {
                 this.maxSpeed = 3;
+                this.enemyInterval = 700;
             }
         }
         draw(context, deltaTime){

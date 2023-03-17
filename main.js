@@ -5,11 +5,14 @@ import { FlyingEnemy, GroundEnemy } from './enemies.js';
 import { UI } from './UI.js';
 
 
+
 window.addEventListener('load',function(){
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
     canvas.width = 1000; 
     canvas.height = 700;
+    const fm = document.getElementById('FM');
+    const sm = document.getElementById('SM');
 
     class Game {
         constructor(width, height){
@@ -63,6 +66,13 @@ window.addEventListener('load',function(){
             if (this.particles.length > this.maxParticles) {
                 this.particles.length = this.maxParticles;
             }
+            if (fm.checked) {
+                this.maxSpeed = 20;
+            } else if (sm.checked) {
+                this.maxSpeed = 1;
+            } else {
+                this.maxSpeed = 3;
+            }
         }
         draw(context, deltaTime){
             if (this.timer > this.interval){
@@ -99,3 +109,4 @@ window.addEventListener('load',function(){
     }
     animate(0);
 });
+

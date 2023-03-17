@@ -12,9 +12,9 @@
     <div class = "settings">
         <h1 class = "settingTitle">Settings</h1> 
         <ul class="inputs"> 
-            <li> <input type="checkbox" name="Dark" id="Dark"> <label for="Dark"> Dark Mode </label> </li>
-            <li> <input type="checkbox" name="SM" id="SM"> <label for="SM"> Slow Mode </label> </li>
-            <li> <input type="checkbox" name="Dark" id="Dark"> <label for="Dark"> </label> </li>
+            <li> <input type="checkbox" onChange="darkFunction(body1, this)">  Dark Mode </li>
+            <li> <input type="checkbox" id="SM">  Slow Mode  </li>
+            <li> <input type="checkbox" id="FM"> Rocket Mode </li>
         </ul>
     </div>
     
@@ -42,8 +42,13 @@
         <h3> Arrow Down: Sit, Dive (midair) </h3>
         
     </div>
-    
+    <script>
+        function darkFunction(x, _this) {
+            x.style.backgroundColor = _this.checked ? 'rgb(67,67,67)' : '#FFFFFF';
+        }
+    </script>
+
 </div>
-<body>
+<body id="body1">
 </body>
 </html>

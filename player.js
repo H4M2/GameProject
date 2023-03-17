@@ -65,7 +65,7 @@ export class Player {
             ){
                 //collision detected
                 enemy.markedForDeletion = true;
-                if (this.currentState === this.states[2] || this.currentState === this.states[3] || this.currentState === this.states[5]){
+                if (this.currentState === this.states[1] || this.currentState === this.states[2] || this.currentState === this.states[3] || this.currentState === this.states[5]){
                     this.game.score++;
                 } else {
                     this.setState(5,0);

@@ -12,9 +12,24 @@
     <div class = "settings">
         <h1 class = "settingTitle">Settings</h1> 
         <ul class="inputs"> 
-            <li> <input type="checkbox" onChange="darkFunction(body1, this)">  Dark Mode </li>
-            <li> <input type="checkbox" id="SM">  Slow Mode  </li>
-            <li> <input type="checkbox" id="FM"> Rocket Mode </li>
+            <li>
+                <div class="tooltip">  <input type="checkbox" onChange="darkFunction(body1, this)">  Dark Mode 
+                    <span class="tooltiptext">This is the Dark Mode option. Once this setting is checked it will make the background dark grey.</span>
+                </div>
+            </li>
+            
+            <li>
+                <div class="tooltip"><input type="checkbox" id="SM">  Slow Mode  
+                    <span class="tooltiptext">This option will make the enemies move slower. Press Arrow Up to activate Slow mode.</span>
+                </div>
+            </li>
+
+            <li>
+                <div class="tooltip">  <input type="checkbox" id="FM"> Rocket Mode 
+                    <span class="tooltiptext">This option will make the game move very fast. Press Arrow Up to activate Rocket mode.</span>
+                </div>
+            </li>
+            
         </ul>
     </div>
     
@@ -37,6 +52,7 @@
     <div id="about">
         <h1 > Run, Jump and Dive to Kill the Enemies!</h1>
         <h2> Experiment with the Settings on the Left</h2>
+        <h2> and Hover over each setting to read their description/explanation!</h2>
         <h3> Arrow Left/Right: Run </h3>
         <h3> Arrow Up: Jump </h3>
         <h3> Arrow Down: Sit, Dive (midair) </h3>

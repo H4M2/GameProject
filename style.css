@@ -19,6 +19,7 @@
 
 .settings {
     border: 5px solid black;
+    padding: 5px;
     position:absolute;
     top: 40%;
     left: 10%;
@@ -35,7 +36,7 @@
 }
 
 .inputs li {
-    padding-bottom: .6em;
+    padding-bottom: 1em;
 }
 
 #about {
@@ -84,3 +85,21 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+
+o{
+    display:block;
+    width:80px;
+    float:left;
+}
+
+.controls{
+    position: absolute;
+    bottom: 55%;
+    left: 82%;
+    border: 5px solid black;
+    padding: 10px;
+}
+
+.filter{
+    display:none
+}

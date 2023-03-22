@@ -110,5 +110,49 @@ window.addEventListener('load',function(){
         if (!game.gameOver) requestAnimationFrame(animate);
     }
     animate(0);
+
+
+    
+let filterString ='none'
+const controls = [
+  {name:'grayscale',min:0,max:100,val:0,d:'%'},
+  {name:'hue-rotate',min:0,max:360,val:0,d:'deg'},
+  {name:'saturate',min:0,max:200,val:100,d:'%'},
+  {name:'sepia',min:0,max:100,val:0,d:'%'},
+];
+
+//Create some hacked controls
+//You should properbly never do anything like this in production :-)
+controls.forEach(ctrl=>{
+  const elm = document.createElement("DIV");
+  elm.innerHTML = `<div>
+    <o>${ctrl.name}</o>
+    <input id="haxctrl_${ctrl.name}" d="${ctrl.d}" type="range" value="${ctrl.val}" min="${ctrl.min}" max="${ctrl.max}" />
+    <b>${ctrl.val}${ctrl.d}</b>
+</div>`;
+elm.oninput=e=>{
+  e.target.parentElement.querySelector("input+b").innerText=e.target.value+e.target.getAttribute("d");
+  makeFilterString();
+}
+divControls.appendChild(elm);
 });
+
+//Create filter string using the hacked controls
+function makeFilterString(){
+  filterString= controls.map(f=>`${f.name}(${document.getElementById('haxctrl_'+f.name).value}${f.d})`).join('\r\n');
+  taFilter.value=filterString;
+}
+makeFilterString();
+
+!(function loop(time){
+    
+  //Play whith the filters using hacked controls
+  ctx.filter=filterString;
+	ctx.drawImage(canvas1, canvas.width,0);
+
+	requestAnimationFrame(loop);//loop
+})(0)
+
+});
+
 
